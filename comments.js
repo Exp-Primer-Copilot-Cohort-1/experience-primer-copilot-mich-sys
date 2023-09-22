@@ -1,18 +1,24 @@
 // create web server
-// create route for comments
-// create route for add comments
-// create route for delete comments
-// create route for edit comments
 
 const express = require('express');
-const router = express.Router();
-const commentsCtrl = require('../controllers/comments');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const morgan = require('morgan');
+// const {sequelize} = require('./models')
+const config = require('./config/config')
 
-// add route for comments
-router.post('/posts/:id/comments', commentsCtrl.create);
-// add route for delete comments
-router.delete('/comments/:id', commentsCtrl.delete);
-// add route for edit comments
-router.put('/comments/:id', commentsCtrl.update);
+const app = express();
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(cors());
 
-module.exports = router;
+require('./routes')(app)
+
+app.listen(config.port)
+console.log(`Server started on port ${config.port}`)
+
+// sequelize.sync()
+// .then(() => {
+//     app.listen(config.port)
+//     console.log(`Server started on port ${config.port}`)
+// })
