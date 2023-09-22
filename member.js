@@ -1,8 +1,9 @@
-function skillMember (member) {
+function skillMember () {
   return {
-    id: member.id,
-    name: member.name,
-    avatar: member.avatar,
-    skills: member.skills
-  }
-}git
+    restrict: 'E',
+    templateUrl: 'views/skill-member.html',
+    scope: {
+      member: '='
+    }
+  };
+}
