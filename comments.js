@@ -37,6 +37,4 @@ router.post('/', function(req, res, next) {
   } catch (e) {
     req.flash('error', e.message);
     return res.redirect('back');
-  }
-
-  var comment = [{]
+  } });
